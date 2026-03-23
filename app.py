@@ -1,5 +1,6 @@
 
 import streamlit as st
+import streamlit.components.v1 as components
 import base64
 
 st.set_page_config(page_title="Ancient Chicken Grimoire 🍗📖", layout="centered")
@@ -18,14 +19,20 @@ def autoplay_audio(file_path):
     except:
         pass
 
-# --- STYLING ---
-st.markdown("""
+# --- FLOATING EFFECTS (outside book) ---
+for i in range(10):
+    st.markdown(f"<div style='position:fixed; left:{i*10}%; top:{i*7}%; font-size:14px;'>✨</div>", unsafe_allow_html=True)
+
+for i in range(10):
+    st.markdown(f"<div style='position:fixed; left:{i*10}%; bottom:0; font-size:18px;'>💖</div>", unsafe_allow_html=True)
+
+# --- BOOK (HTML COMPONENT FIX) ---
+components.html("""
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-
-/* BACKGROUND */
 body {
+    margin:0;
     background: radial-gradient(circle at top, #2b1d0e, #120a04);
 }
 
@@ -34,6 +41,7 @@ body {
     width: 380px;
     height: 520px;
     margin: auto;
+    margin-top: 30px;
     perspective: 2000px;
 }
 
@@ -84,93 +92,32 @@ body {
     background: rgba(0,0,0,0.25);
 }
 
-/* TITLE */
+/* TEXT */
 .title {
     font-family: 'Cinzel', serif;
     font-size: 28px;
     text-align: center;
-    color: #5a3e1b;
     margin-bottom: 10px;
 }
 
-/* DOODLE */
 .doodle {
     text-align:center;
     font-size: 45px;
-    margin-bottom: 10px;
     animation: float 2s infinite;
 }
 
-/* FLOAT */
 @keyframes float {
     0%,100% { transform: translateY(0); }
     50% { transform: translateY(-6px); }
 }
 
-/* INGREDIENTS */
 .ingredient {
     font-family: 'Great Vibes', cursive;
     font-size: 20px;
     margin: 6px 0;
 }
-
-/* SPARKLES */
-.sparkle {
-    position: fixed;
-    font-size: 14px;
-    animation: sparkle 2s infinite;
-}
-
-@keyframes sparkle {
-    0%,100% {opacity:0;}
-    50% {opacity:1;}
-}
-
-/* HEARTS */
-.heart {
-    position: fixed;
-    bottom: 0;
-    font-size: 18px;
-    animation: hearts 6s linear infinite;
-}
-
-@keyframes hearts {
-    0% {transform: translateY(100vh);}
-    100% {transform: translateY(-10vh); opacity:0;}
-}
-
-/* COOKING */
-.cooking {
-    font-size: 60px;
-    text-align:center;
-    animation: cook 1s infinite alternate;
-}
-
-@keyframes cook {
-    from { transform: rotate(-5deg); }
-    to { transform: rotate(5deg); }
-}
-
-/* BUTTON */
-button[kind="primary"] {
-    background: linear-gradient(45deg, #8b5e3c, #c69c6d);
-    color: white;
-    border-radius: 20px;
-    border: none;
-}
-
 </style>
-""", unsafe_allow_html=True)
 
-# --- EFFECTS ---
-for i in range(10):
-    st.markdown(f"<div class='sparkle' style='left:{i*10}%; top:{i*7}%'>✨</div>", unsafe_allow_html=True)
-
-for i in range(10):
-    st.markdown(f"<div class='heart' style='left:{i*10}%'>💖</div>", unsafe_allow_html=True)
-
-# --- BOOK UI (FIXED HTML) ---
-st.markdown("""
 <div class="book">
   <div class="book-inner">
     <div class="page">
@@ -192,13 +139,13 @@ st.markdown("""
     </div>
   </div>
 </div>
-""", unsafe_allow_html=True)
+""", height=600)
 
 # --- BUTTON ---
 if st.button("Unleash Recipe Magic 💫"):
     st.success("The grimoire awakens... 🔥")
 
-    st.markdown("<div class='cooking'>🍳🔥🐔</div>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align:center;'>🍳🔥🐔</h1>", unsafe_allow_html=True)
 
     st.markdown("""
     ### 👩‍🍳 Ritual Steps
