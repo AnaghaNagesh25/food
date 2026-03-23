@@ -1,5 +1,4 @@
-#lets make steak yayyy
-
+```python
 import streamlit as st
 import base64
 
@@ -26,7 +25,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- Floating hearts animation ---
+# --- CSS Styling ---
 st.markdown("""
 <style>
 @keyframes float {
@@ -72,11 +71,11 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# --- Floating hearts render ---
+# --- Floating hearts ---
 for i in range(10):
     st.markdown(f"<div class='heart' style='left:{i*10}%'>💖</div>", unsafe_allow_html=True)
 
-# --- Main Card ---
+# --- Main card ---
 st.markdown("<div class='card'>", unsafe_allow_html=True)
 
 st.markdown("<div class='doodle'>🐔🔥🍳</div>", unsafe_allow_html=True)
@@ -101,11 +100,11 @@ if st.button("Cook Now 💕"):
 
     st.markdown("""
     ### 👩‍🍳 Steps
-    1️⃣ Mix all ingredients into a cute marinade 💫  
+    1️⃣ Mix all ingredients into a marinade 💫  
     2️⃣ Coat chicken steak nicely 🐔💖  
     3️⃣ Rest for 20 mins ⏳  
     4️⃣ Pan cook till golden & juicy 🔥  
-    5️⃣ Enjoy your aesthetic meal 🍽️✨  
+    5️⃣ Enjoy your meal 🍽️✨  
     """)
 
     autoplay_audio("assets/sizzle.mp3")
