@@ -1,4 +1,3 @@
-```python
 import streamlit as st
 import base64
 
@@ -110,4 +109,4 @@ if st.button("Cook Now 💕"):
     autoplay_audio("assets/sizzle.mp3")
 
 st.markdown("</div>", unsafe_allow_html=True)
-```
+
