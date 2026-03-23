@@ -2,7 +2,7 @@
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="Magical Chicken Steak 🍗📖", layout="centered")
+st.set_page_config(page_title="Ancient Chicken Grimoire 🍗📖", layout="centered")
 
 # --- SOUND ---
 def autoplay_audio(file_path):
@@ -18,21 +18,21 @@ def autoplay_audio(file_path):
     except:
         pass
 
-# --- CSS + FONTS ---
+# --- STYLING ---
 st.markdown("""
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 
-/* Background */
+/* BACKGROUND */
 body {
-    background: radial-gradient(circle at top, #fff0f5, #ffe4e1);
+    background: radial-gradient(circle at top, #2b1d0e, #120a04);
 }
 
 /* BOOK */
 .book {
-    width: 360px;
-    height: 480px;
+    width: 400px;
+    height: 540px;
     margin: auto;
     perspective: 2000px;
 }
@@ -49,75 +49,72 @@ body {
     100% { transform: rotateY(0deg); }
 }
 
-/* PAGE */
+/* PAGE (PARCHMENT) */
 .page {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
-    background: #fffdf7;
-    border-radius: 15px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-    padding: 20px;
+    background: linear-gradient(135deg, #f5e6c8, #e8d3a1);
+    border-radius: 12px;
+    padding: 25px;
+    color: #3b2b1a;
+    box-shadow:
+        inset 0 0 40px rgba(0,0,0,0.5),
+        0 25px 50px rgba(0,0,0,0.7);
+    border: 3px solid #5a3e1b;
 }
 
-/* Title */
+/* PAPER TEXTURE */
+.page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("https://www.transparenttextures.com/patterns/paper.png");
+    opacity: 0.25;
+}
+
+/* BOOK FOLD */
+.page::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: rgba(0,0,0,0.25);
+}
+
+/* TITLE */
 .title {
-    font-family: 'Great Vibes', cursive;
-    font-size: 38px;
-    color: #d6336c;
+    font-family: 'Cinzel', serif;
+    font-size: 30px;
     text-align: center;
+    color: #5a3e1b;
+    margin-bottom: 10px;
 }
 
-/* Ingredients */
-.ingredient {
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    margin: 4px;
-    animation: float 3s infinite;
+/* DOODLE */
+.doodle {
+    text-align:center;
+    font-size: 45px;
+    margin-bottom: 10px;
+    animation: float 2s infinite;
 }
 
-/* Floating animation */
+/* FLOAT */
 @keyframes float {
     0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-6px); }
 }
 
-/* Doodle */
-.doodle {
-    font-size: 55px;
-    text-align:center;
-    animation: bounce 1.5s infinite;
-}
-
-@keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-/* PAGE FLIP */
-.flip {
-    animation: flipPage 1s forwards;
-}
-
-@keyframes flipPage {
-    from { transform: rotateY(0); }
-    to { transform: rotateY(-180deg); }
-}
-
-/* HEARTS */
-.heart {
-    position: fixed;
-    bottom: 0;
-    animation: hearts 6s linear infinite;
+/* INGREDIENTS */
+.ingredient {
+    font-family: 'Great Vibes', cursive;
     font-size: 20px;
+    margin: 6px 0;
 }
 
-@keyframes hearts {
-    0% {transform: translateY(100vh); opacity:1;}
-    100% {transform: translateY(-10vh); opacity:0;}
-}
-
-/* SPARKLES */
+/* MAGIC PARTICLES */
 .sparkle {
     position: fixed;
     font-size: 14px;
@@ -129,17 +126,17 @@ body {
     50% {opacity:1;}
 }
 
-/* FLOATING INGREDIENTS */
-.floaty {
+/* HEARTS */
+.heart {
     position: fixed;
-    font-size: 22px;
-    animation: floaty 4s infinite;
+    bottom: 0;
+    font-size: 18px;
+    animation: hearts 6s linear infinite;
 }
 
-@keyframes floaty {
-    0% {transform: translateY(0px) rotate(0deg);}
-    50% {transform: translateY(-20px) rotate(10deg);}
-    100% {transform: translateY(0px) rotate(0deg);}
+@keyframes hearts {
+    0% {transform: translateY(100vh);}
+    100% {transform: translateY(-10vh); opacity:0;}
 }
 
 /* COOKING SCENE */
@@ -156,7 +153,8 @@ body {
 
 /* BUTTON */
 button[kind="primary"] {
-    background: linear-gradient(45deg, #ff9aa2, #ffc3a0);
+    background: linear-gradient(45deg, #8b5e3c, #c69c6d);
+    color: white;
     border-radius: 20px;
     border: none;
 }
@@ -165,18 +163,11 @@ button[kind="primary"] {
 """, unsafe_allow_html=True)
 
 # --- FLOATING EFFECTS ---
-for i in range(15):
-    st.markdown(f"<div class='heart' style='left:{i*6}%'>💖</div>", unsafe_allow_html=True)
-
 for i in range(12):
     st.markdown(f"<div class='sparkle' style='left:{i*8}%; top:{i*7}%'>✨</div>", unsafe_allow_html=True)
 
-floating_items = ["🌶️","🍋","🍯","🥢","🍬","🌰"]
-for i, item in enumerate(floating_items):
-    st.markdown(
-        f"<div class='floaty' style='left:{i*15}%; top:{(i*10)%80}%'>{item}</div>",
-        unsafe_allow_html=True
-    )
+for i in range(10):
+    st.markdown(f"<div class='heart' style='left:{i*10}%'>💖</div>", unsafe_allow_html=True)
 
 # --- BOOK UI ---
 st.markdown("""
@@ -184,7 +175,7 @@ st.markdown("""
   <div class="book-inner">
     <div class="page">
 
-      <div class="title">Chicken Steak 🍗</div>
+      <div class="title">Ancient Chicken Elixir 🍗📜</div>
 
       <div class="doodle">🐔✨🍳</div>
 
@@ -202,24 +193,23 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# --- BUTTON ---
-if st.button("Open Magic Recipe 💕"):
-    st.success("✨ The book comes alive...")
+# --- BUTTON ACTION ---
+if st.button("Unleash Recipe Magic 💫"):
+    st.success("The grimoire awakens... 🔥")
+
+    st.markdown("<div class='cooking'>🍳🔥🐔</div>", unsafe_allow_html=True)
 
     st.markdown("""
-    <div class='cooking'>🍳🔥🐔</div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    ### 👩‍🍳 Steps
-    1️⃣ Mix ingredients 💫  
-    2️⃣ Coat chicken 🐔  
-    3️⃣ Rest 20 mins ⏳  
-    4️⃣ Cook till golden 🔥  
-    5️⃣ Serve & enjoy 🍽️✨  
+    ### 👩‍🍳 Ritual Steps
+    1️⃣ Blend sacred spices 💫  
+    2️⃣ Coat the chicken 🐔  
+    3️⃣ Let it rest ⏳  
+    4️⃣ Cook over flame 🔥  
+    5️⃣ Feast like royalty 🍽️✨  
     """)
 
     autoplay_audio("assets/sizzle.mp3")
+
 
 
 
