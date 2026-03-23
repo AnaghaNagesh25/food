@@ -1,4 +1,4 @@
-```python id="insaneapp123"
+
 import streamlit as st
 import base64
 
@@ -220,7 +220,7 @@ if st.button("Open Magic Recipe 💕"):
     """)
 
     autoplay_audio("assets/sizzle.mp3")
-```
+
 
 
 
