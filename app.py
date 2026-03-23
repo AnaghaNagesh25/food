@@ -31,8 +31,8 @@ body {
 
 /* BOOK */
 .book {
-    width: 400px;
-    height: 540px;
+    width: 380px;
+    height: 520px;
     margin: auto;
     perspective: 2000px;
 }
@@ -41,7 +41,7 @@ body {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    animation: openBook 2s ease forwards;
+    animation: openBook 1.8s ease forwards;
 }
 
 @keyframes openBook {
@@ -49,7 +49,7 @@ body {
     100% { transform: rotateY(0deg); }
 }
 
-/* PAGE (PARCHMENT) */
+/* PAGE */
 .page {
     position: relative;
     width: 100%;
@@ -87,7 +87,7 @@ body {
 /* TITLE */
 .title {
     font-family: 'Cinzel', serif;
-    font-size: 30px;
+    font-size: 28px;
     text-align: center;
     color: #5a3e1b;
     margin-bottom: 10px;
@@ -114,7 +114,7 @@ body {
     margin: 6px 0;
 }
 
-/* MAGIC PARTICLES */
+/* SPARKLES */
 .sparkle {
     position: fixed;
     font-size: 14px;
@@ -139,7 +139,7 @@ body {
     100% {transform: translateY(-10vh); opacity:0;}
 }
 
-/* COOKING SCENE */
+/* COOKING */
 .cooking {
     font-size: 60px;
     text-align:center;
@@ -162,14 +162,14 @@ button[kind="primary"] {
 </style>
 """, unsafe_allow_html=True)
 
-# --- FLOATING EFFECTS ---
-for i in range(12):
-    st.markdown(f"<div class='sparkle' style='left:{i*8}%; top:{i*7}%'>✨</div>", unsafe_allow_html=True)
+# --- EFFECTS ---
+for i in range(10):
+    st.markdown(f"<div class='sparkle' style='left:{i*10}%; top:{i*7}%'>✨</div>", unsafe_allow_html=True)
 
 for i in range(10):
     st.markdown(f"<div class='heart' style='left:{i*10}%'>💖</div>", unsafe_allow_html=True)
 
-# --- BOOK UI ---
+# --- BOOK UI (FIXED HTML) ---
 st.markdown("""
 <div class="book">
   <div class="book-inner">
@@ -180,6 +180,7 @@ st.markdown("""
       <div class="doodle">🐔✨🍳</div>
 
       <h4>Ingredients</h4>
+
       <div class="ingredient">🌶️ Chilli Powder</div>
       <div class="ingredient">🧂 Salt</div>
       <div class="ingredient">🍋 Lemon</div>
@@ -193,7 +194,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# --- BUTTON ACTION ---
+# --- BUTTON ---
 if st.button("Unleash Recipe Magic 💫"):
     st.success("The grimoire awakens... 🔥")
 
@@ -203,12 +204,14 @@ if st.button("Unleash Recipe Magic 💫"):
     ### 👩‍🍳 Ritual Steps
     1️⃣ Blend sacred spices 💫  
     2️⃣ Coat the chicken 🐔  
-    3️⃣ Let it rest ⏳  
+    3️⃣ Rest ⏳  
     4️⃣ Cook over flame 🔥  
-    5️⃣ Feast like royalty 🍽️✨  
+    5️⃣ Feast 🍽️✨  
     """)
 
     autoplay_audio("assets/sizzle.mp3")
+
+
 
 
 
